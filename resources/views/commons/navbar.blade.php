@@ -14,12 +14,8 @@
                     @if (Auth::check())
                     <?php $user = Auth::user(); ?>
                         <li>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                駅弁一覧
-                              </a>
+                            <a href="{{ route('items.index') }}">駅弁一覧</a>
                         </li>
-
                         <li class="dropdown">
                             
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
