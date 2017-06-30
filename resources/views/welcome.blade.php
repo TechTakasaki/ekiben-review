@@ -16,7 +16,9 @@
                     <p>ここでは、日本各地の駅弁を食べた感想・レビューを集めています。<br />
                     皆さんが食べてきた駅弁の中で、思い出に残るくらい、印象深い駅弁もあるのではないでしょうか？<br /><br />
                     是非とも、感想をここで述べて、思い出を残していきませんか？</p>
-                    <a href="" class="btn btn-success btn-lg">駅弁レビューを始める</a>
+                @if (!Auth::check())
+                    <a href="{{ route('signup.get') }}" class="btn btn-success btn-lg">駅弁レビューを始める</a>
+                @endif
             </div>
         </div>
     </div>
