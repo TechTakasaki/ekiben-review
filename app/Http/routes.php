@@ -29,6 +29,9 @@ Route::group(['middleware' => 'auth'], function () {
     });
     Route::resource('items', 'ItemsController');
     Route::group(['prefix' => 'items/{id}'], function () { 
-        Route::resource('reviews', 'ReviewsController');
+        Route::get('reviews', 'ReviewsController@index')->name('items.reviews');
+        Route::get('reviews/create', 'ReviewsController@create')->name('items.reviews.create');
+        Route::post('reviews', 'ReviewsController@store')->name('items.reviews.store');
+        Route::delete('reviews', 'ReviewsController@destroy')->name('items.reviews.destroy');
     });
 });

@@ -23,6 +23,8 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+        $reviews = $user->reviews()->orderBy('created_at', 'desc')->paginate(10);
+        $count_reviews = $user->reviews()->count();
         
         return view('users.show', [
             'user' => $user,
