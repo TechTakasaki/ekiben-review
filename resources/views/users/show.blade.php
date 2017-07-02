@@ -13,5 +13,15 @@
             </div>
             @include('user_follow.follow_button', ['user' => $user])
         </aside>
+        <div class="col-xs-8">
+            <ul class="nav nav-tabs nav-justified">
+                <li role="presentation" class="{{ Request::is('users/' . $user->id) ? 'active' : '' }}"><a href="{{ route('users.show', ['id' => $user->id]) }}">レビュー数 <span class="badge">{{ $count_reviews }}</span></a></li>
+                <li role="presentation" class="{{ Request::is('users/*/followings') ? 'active' : '' }}"><a href="{{ route('users.followings', ['id' => $user->id]) }}">フォロー数 <span class="badge">{{ $count_followings }}</span></a></li>
+                <li role="presentation" class="{{ Request::is('users/*/followers') ? 'active' : '' }}"><a href="{{ route('users.followers', ['id' => $user->id]) }}">フォロアー数 <span class="badge">{{ $count_followers }}</span></a></li>
+            </ul>
+            @if (count($reviews) > 0)
+                @include('reviews.reviews', ['reviews' => $reviews])
+            @endif
+        </div>
     </div>
 @endsection

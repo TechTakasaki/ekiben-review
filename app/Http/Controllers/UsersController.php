@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\User;
+use App\Item;
 
 class UsersController extends Controller
 {
@@ -23,12 +24,19 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+        $item = Item::find($id);
         $reviews = $user->reviews()->orderBy('created_at', 'desc')->paginate(10);
         $count_reviews = $user->reviews()->count();
         
-        return view('users.show', [
+        $data = [
             'user' => $user,
-        ]);
+            'item' => $item,
+            'reviews' => $reviews,
+        ];
+        
+        $data += $this->counts($user);
+        
+        return view('users.show', $data);
     }
     
     public function followings($id)
